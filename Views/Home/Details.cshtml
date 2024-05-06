@@ -1,0 +1,134 @@
+﻿@* <html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h3>@ViewData["PageTitle"]</h3>
+
+    @{
+        var employee = ViewData["Employee"] as EmployeeManagement.Models.Employee;
+    }
+
+    <div>
+        Name : @employee.Name
+    </div>
+    <div>
+        Email : @employee.Email
+    </div>
+    <div>
+        Department : @employee.Department
+    </div>
+</body>
+</html> *@
+
+
+
+
+
+
+
+@* <html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h3>@ViewBag.PageTitle</h3>
+    <div>
+        Name : @ViewBag.Employee.Name
+    </div>
+    <div>
+        Email : @ViewBag.Employee.Email
+    </div>
+    <div>
+        Department : @ViewBag.Employee.Department
+    </div>
+</body>
+</html> *@
+
+
+
+
+@* @model EmployeeManagement.Models.Employee
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h3>@ViewBag.PageTitle</h3>
+    <div>
+        Name : @Model.Name
+    </div>
+    <div>
+        Email : @Model.Email
+    </div>
+    <div>
+        Department : @Model.Department
+    </div>
+</body>
+</html> *@
+
+
+
+@* @model HomeDetailsViewModel *@
+
+@* <html>
+<head>
+    <title></title>
+</head>
+<body> *@
+
+@* @{
+   // Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.Title = "Employee Details";
+}
+ *@
+    @* <h3>@Model.PageTitle</h3>
+    <div>
+        Name : @Model.Employee.Name
+    </div>
+    <div>
+        Email : @Model.Employee.Email
+    </div>
+    <div>
+        Department : @Model.Employee.Department
+    </div> *@
+@* </body>
+</html> *@
+
+
+
+        @model HomeDetailsViewModel
+
+@{
+    ViewBag.Title = "Employee Details";
+    var photoPath = "~/images/" + (Model.Employee.PhotoPath ?? "noimage.jpg");
+}
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Employee.Name</h1>
+            </div>
+
+            <div class="card-body text-center">
+                <img class="card-img-top" src="@photoPath" asp-append-version="true" />
+                <h4>Employee ID : @Model.Employee.Id</h4>
+                <h4>Email : @Model.Employee.Email</h4>
+                <h4>Department : @Model.Employee.Department</h4>
+
+            </div>
+            <div class="card-footer text-center">
+                @* <a href="#" class="btn btn-primary">Back</a> *@
+                <a asp-controller="home" asp-action="index" class="btn btn-primary" asp-routeid="@Model.Employee.Id">Back</a>
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/CustomScript.js"></script>
+}
